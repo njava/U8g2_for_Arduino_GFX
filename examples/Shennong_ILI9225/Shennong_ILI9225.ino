@@ -1,67 +1,63 @@
 /*
 
   Shennong_IL9341.ino
-  
+
   Scroll through Chinese Short Story
-  "The Farmer God Shen Nong Tastes All the Plants" 
+  "The Farmer God Shen Nong Tastes All the Plants"
 
   U8g2_for_Adafruit_GFX:
     - Use U8g2 fonts with Adafruit GFX
     - Support for UTF-8 in print statement
     - 90, 180 and 270 degree text direction
-  
+
   List of all U8g2 fonts: https://github.com/olikraus/u8g2/wiki/fntlistall
 
 
   English translation:
-  The Farmer God Shen Nong Tastes All the Plants 
+  The Farmer God Shen Nong Tastes All the Plants
 
   Source:
   http://chinesereadingpractice.com/2012/08/22/the-farmer-god-shen-nong-tastes-all-the-plants/
 
-  All his life, Shen Nong had a crystal abdomen, and one could 
-  clearly see all of his internal organs. At that time, humans were 
-  often getting sick and even dying because they ate things 
-  indiscriminately [not knowing if they were good or bad]. Shen 
-  Nong determinedly tasted everything everywhere; the 
-  good-tasting things he put in a bag on his left side, those were 
-  for people to eat; the bad-tasting things he put in a bag on his 
+  All his life, Shen Nong had a crystal abdomen, and one could
+  clearly see all of his internal organs. At that time, humans were
+  often getting sick and even dying because they ate things
+  indiscriminately [not knowing if they were good or bad]. Shen
+  Nong determinedly tasted everything everywhere; the
+  good-tasting things he put in a bag on his left side, those were
+  for people to eat; the bad-tasting things he put in a bag on his
   right side, and those were used for medicine.
 
-  The first time, Shen Nong tasted a small fresh leaf. As this leaf 
-  fell into his stomach, it cleaned every inch of his insides so that 
-  every organ top and bottom was fresh and cool, as if [the leaf] 
-  was somehow on patrol [making the rounds], so Shen Nong 
-  called it “chá” [to investigate / check], and later generations of 
-  men called it “chá” [tea]. Shen Nong put it in the bag on the 
-  right. The second time, Shen Nong tasted a little light red flower 
-  that looked like a butterfly, which was sweet and delicious, with 
-  an exotic smell that filled his nostrils, so he called it “licorice”. He 
-  put it in the bag on the left. In this way, Shen Nong diligently 
-  tasted all manner of flora, and every time he was poisoned, he 
-  used tea to rescue himself. Before long, the bag on his left 
-  contained 47,000 kinds of flowers, grasses, roots and leaves, 
+  The first time, Shen Nong tasted a small fresh leaf. As this leaf
+  fell into his stomach, it cleaned every inch of his insides so that
+  every organ top and bottom was fresh and cool, as if [the leaf]
+  was somehow on patrol [making the rounds], so Shen Nong
+  called it “chá” [to investigate / check], and later generations of
+  men called it “chá” [tea]. Shen Nong put it in the bag on the
+  right. The second time, Shen Nong tasted a little light red flower
+  that looked like a butterfly, which was sweet and delicious, with
+  an exotic smell that filled his nostrils, so he called it “licorice”. He
+  put it in the bag on the left. In this way, Shen Nong diligently
+  tasted all manner of flora, and every time he was poisoned, he
+  used tea to rescue himself. Before long, the bag on his left
+  contained 47,000 kinds of flowers, grasses, roots and leaves,
   and the right side had 398,000 kinds.
 
-  But one day, Shen Nong tasted “heartbreak grass”, and this 
-  poison was too terrible, so there wasn’t enough time to eat the 
-  tea leaves to detoxify and he died. He sacrificed himself to save 
-  humanity, so people call him the “Bodhisattva of Medicine”, and 
-  people forever commemorate him through this story. 
+  But one day, Shen Nong tasted “heartbreak grass”, and this
+  poison was too terrible, so there wasn’t enough time to eat the
+  tea leaves to detoxify and he died. He sacrificed himself to save
+  humanity, so people call him the “Bodhisattva of Medicine”, and
+  people forever commemorate him through this story.
 
 
 */
-#include "SPI.h"
-#include "Adafruit_GFX.h"
-#include "Adafruit_ILI9341.h"
-#include "U8g2_for_Adafruit_GFX.h"
+#include <Arduino_GFX_Library.h>
+#include <U8g2_for_Arduino_GFX.h>
 
-#define TFT_DC 9
-#define TFT_CS 10
-
-Adafruit_ILI9341 display = Adafruit_ILI9341(TFT_CS, TFT_DC);
-
-U8G2_FOR_ADAFRUIT_GFX u8g2_for_adafruit_gfx;
+// ILI9225 LCD 176x220
+Arduino_DataBus *bus = new Arduino_ESP32PAR8(5 /*TFT_DC*/, 25 /*TFT_CS*/, 26 /* WR */, 13 /* RD */, 19, 21, 22, 23, 18, 12, 14, 15);
+Arduino_GFX *gfx = new Arduino_ILI9225(bus, 27/*TFT_RST*/, 2);
+U8G2_FOR_ARDUINO_GFX u8g2_for_arduino_gfx;
 
 
 // To read the short story with all glyphs you need at least a font with _gb2312b postfix
@@ -86,65 +82,65 @@ U8G2_FOR_ADAFRUIT_GFX u8g2_for_adafruit_gfx;
 
 
 // Chinese Short Story
-// The Farmer God Shen Nong Tastes All the Plants 
+// The Farmer God Shen Nong Tastes All the Plants
 // Please excause wrong line breaks
 
-const char c_str[] = 
-"Shen Nong\n\n"
-"神农一生下来就是\n"
-"个水晶肚子，五脏\n"
-"六腑全都能看得一\n"
-"清二楚。那时侯，\n"
-"人们经常因为乱吃\n"
-"东西而生病，甚至\n"
-"丧命。神农决心尝\n"
-"遍所有的东西，好\n"
-"吃的放在身边左边\n"
-"的袋子里，给人吃\n"
-"；\n"
-"不好吃的就放在身\n"
-"子右边的袋子里，\n"
-"作药用。\n"
-"第一次，神农尝了\n"
-"一片小嫩叶。这叶\n"
-"片一落进肚里，就\n"
-"上上下下地把里面\n"
-"各器官擦洗得清清\n"
-"爽爽，\n"
-"象巡查似的，\n"
-"神农把它叫做\n"
-"“查”，\n"
-"就是后人所称的\n"
-"“茶”。\n"
-"神农将它放进右边\n"
-"袋子里。第二次，\n"
-"神农尝了朵蝴蝶样\n"
-"的淡红小花，甜津\n"
-"津的，香味扑鼻，\n"
-"这是“甘草”。他把\n"
-"它放进了左边袋子\n"
-"里。就这样，神农\n"
-"辛苦地尝遍百草，\n"
-"每次中毒，都靠茶\n"
-"来解救。后来，\n"
-"他左边的袋子里花\n"
-"草根叶有四万七千\n"
-"种，右边有三十九\n"
-"万八千种。\n"
-"但有一天，神农尝\n"
-"到了“断肠草”，这\n"
-"种毒草太厉害了，\n"
-"他还来不及吃茶解\n"
-"毒就死了。\n"
-"他是为了拯救人们\n"
-"而牺牲的，人们称\n"
-"他为“药王菩萨”，\n"
-"人间以这个神话故\n"
-"事永远地纪念他。\n";
+const char c_str[] =
+  "Shen Nong\n\n"
+  "神农一生下来就是\n"
+  "个水晶肚子，五脏\n"
+  "六腑全都能看得一\n"
+  "清二楚。那时侯，\n"
+  "人们经常因为乱吃\n"
+  "东西而生病，甚至\n"
+  "丧命。神农决心尝\n"
+  "遍所有的东西，好\n"
+  "吃的放在身边左边\n"
+  "的袋子里，给人吃\n"
+  "；\n"
+  "不好吃的就放在身\n"
+  "子右边的袋子里，\n"
+  "作药用。\n"
+  "第一次，神农尝了\n"
+  "一片小嫩叶。这叶\n"
+  "片一落进肚里，就\n"
+  "上上下下地把里面\n"
+  "各器官擦洗得清清\n"
+  "爽爽，\n"
+  "象巡查似的，\n"
+  "神农把它叫做\n"
+  "“查”，\n"
+  "就是后人所称的\n"
+  "“茶”。\n"
+  "神农将它放进右边\n"
+  "袋子里。第二次，\n"
+  "神农尝了朵蝴蝶样\n"
+  "的淡红小花，甜津\n"
+  "津的，香味扑鼻，\n"
+  "这是“甘草”。他把\n"
+  "它放进了左边袋子\n"
+  "里。就这样，神农\n"
+  "辛苦地尝遍百草，\n"
+  "每次中毒，都靠茶\n"
+  "来解救。后来，\n"
+  "他左边的袋子里花\n"
+  "草根叶有四万七千\n"
+  "种，右边有三十九\n"
+  "万八千种。\n"
+  "但有一天，神农尝\n"
+  "到了“断肠草”，这\n"
+  "种毒草太厉害了，\n"
+  "他还来不及吃茶解\n"
+  "毒就死了。\n"
+  "他是为了拯救人们\n"
+  "而牺牲的，人们称\n"
+  "他为“药王菩萨”，\n"
+  "人间以这个神话故\n"
+  "事永远地纪念他。\n";
 
 
-char buf[48];      // there are at most 8 chinese glyphs per line, max buf size is 8*3 = 24 
- 
+char buf[48];      // there are at most 8 chinese glyphs per line, max buf size is 8*3 = 24
+
 uint8_t total_lines;    // the total number of lines in the story
 uint8_t i;        // loop variable for the lines
 uint8_t line_cnt;   // number of lines to draw, usually equal to lines_per_draw
@@ -164,7 +160,7 @@ uint8_t u8x8_GetStringLineCnt(const char *str)
   uint8_t line_cnt = 1;
   if ( str == NULL )
     return 0;
-  for(;;)
+  for (;;)
   {
     e = *str;
     if ( e == '\0' )
@@ -187,11 +183,11 @@ const char *u8x8_GetStringLineStart(uint8_t line_idx, const char *str )
 {
   char e;
   uint8_t line_cnt = 1;
-  
+
   if ( line_idx == 0 )
     return str;
 
-  for(;;)
+  for (;;)
   {
     e = *str;
     if ( e == '\0' )
@@ -200,7 +196,7 @@ const char *u8x8_GetStringLineStart(uint8_t line_idx, const char *str )
     if ( e == '\n' )
     {
       if ( line_cnt == line_idx )
-  return str;
+        return str;
       line_cnt++;
     }
   }
@@ -217,10 +213,10 @@ void u8x8_CopyStringLine(char *dest, uint8_t line_idx, const char *str)
   str = u8x8_GetStringLineStart( line_idx, str );
   if ( str != NULL )
   {
-    for(;;)
+    for (;;)
     {
       if ( *str == '\n' || *str == '\0' )
-  break;
+        break;
       *dest = *str;
       dest++;
       str++;
@@ -231,60 +227,59 @@ void u8x8_CopyStringLine(char *dest, uint8_t line_idx, const char *str)
 
 
 void setup() {
-  display.begin();
-  display.setRotation(0);
-  display.fillScreen(ILI9341_BLACK);
-  u8g2_for_adafruit_gfx.begin(display);                 // connect u8g2 procedures to Adafruit GFX
+  gfx->begin();
+  u8g2_for_arduino_gfx.begin(*gfx);               // connect u8g2 procedures to Adafruit GFX
 
-  u8g2_for_adafruit_gfx.setFont(FONT);
-  u8g2_for_adafruit_gfx.setForegroundColor(ILI9341_WHITE);      // apply Adafruit GFX color
-  
+  gfx->fillScreen(BLACK);
+
+  u8g2_for_arduino_gfx.setFont(FONT);
+  u8g2_for_arduino_gfx.setForegroundColor(WHITE);      // apply Adafruit GFX color
+
   /* calculate the length of the text in lines */
   total_lines = u8x8_GetStringLineCnt(c_str);
-  
+
   /* get the height of the glyphs */
   //glyph_height = u8g2_for_adafruit_gfx.getMaxCharHeight();
-  glyph_height = u8g2_for_adafruit_gfx.u8g2.font_info.max_char_height;
-  glyph_width = u8g2_for_adafruit_gfx.u8g2.font_info.max_char_width;
+  glyph_height = u8g2_for_arduino_gfx.u8g2.font_info.max_char_height;
+  glyph_width = u8g2_for_arduino_gfx.u8g2.font_info.max_char_width;
 
   /* calculate the height of the text in pixel */
   total_height = (uint16_t)total_lines * (uint16_t)glyph_height;
-  
+
 
   /* calculate how many lines must be drawn on the screen */
-  lines_per_draw = display.height() / glyph_height;
+  lines_per_draw = gfx->height(); // glyph_height;
   lines_per_draw += 2;
 
   /* start at the top of the text */
   top_window_pos = 0;
-  
+
 }
 
-void loop() {  
+void loop() {
 
   start_line = top_window_pos / glyph_height;
   top_offset = top_window_pos % glyph_height;
-  
+
   line_cnt = total_lines - start_line;
   if ( line_cnt > lines_per_draw )
     line_cnt = lines_per_draw;
 
-  //display.clearDisplay();                               // clear the graphcis buffer  
-  
-  for( i = 0; i < line_cnt; i++ )
+  //display.clearDisplay();                               // clear the graphcis buffer
+
+  for ( i = 0; i < line_cnt; i++ )
   {
     /* copy a line of the text to the local buffer */
-    u8x8_CopyStringLine(buf, i+start_line, c_str);
-    
-    /* draw the content of the local buffer */
-    display.fillRect(0, i*glyph_height-top_offset, line_cnt*glyph_width, glyph_height, ILI9341_BLACK);
-    u8g2_for_adafruit_gfx.drawUTF8(0, i*glyph_height-top_offset +glyph_height, buf);
+    u8x8_CopyStringLine(buf, i + start_line, c_str);
 
-    
+    /* draw the content of the local buffer */
+    gfx->fillRect(0, i * glyph_height - top_offset, line_cnt * glyph_width, glyph_height, BLACK);
+    u8g2_for_arduino_gfx.drawUTF8(0, i * glyph_height - top_offset + glyph_height, buf);
+
+
   }
-  
+
   //display.display();                                    // make everything visible
   delay(SCROLL_DELAY);
-  top_window_pos += SCROLL_DELTA;  
-} 
-
+  top_window_pos += SCROLL_DELTA;
+}
