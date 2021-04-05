@@ -135,7 +135,7 @@ void u8g2_SetForegroundColor(u8g2_font_t *u8g2, uint16_t fg);
 void u8g2_SetBackgroundColor(u8g2_font_t *u8g2, uint16_t bg);
 
 
-class U8g2_for_Arduino_GFX : public Print {
+class U8G2_FOR_ARDUINO_GFX : public Print {
   public:
     u8g2_font_t u8g2;
     int16_t tx, ty;       // current position for the print command
