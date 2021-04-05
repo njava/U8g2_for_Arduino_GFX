@@ -149,7 +149,7 @@ class U8G2_FOR_ARDUINO_GFX : public Print {
     int16_t getCursorX(void) { return tx; }
     int16_t getCursorY(void) { return ty; }
   
-    U8g2_for_Arduino_GFX(void) {u8g2.font = NULL; u8g2.font_decode.fg_color = 1; u8g2.font_decode.is_transparent = 1; u8g2.font_decode.dir = 0; home(); } 
+    U8G2_FOR_ARDUINO_GFX(void) {u8g2.font = NULL; u8g2.font_decode.fg_color = 1; u8g2.font_decode.is_transparent = 1; u8g2.font_decode.dir = 0; home(); } 
     void begin(Arduino_GFX &gfx) { u8g2.gfx = &gfx; }
     void setFont(const uint8_t *font)             // set u8g2 font
       { u8g2_SetFont(&u8g2, font); }
