@@ -273,7 +273,7 @@ void loop() {
     u8x8_CopyStringLine(buf, i + start_line, c_str);
 
     /* draw the content of the local buffer */
-    gfx->fillRect(0, i * glyph_height - top_offset, line_cnt * glyph_width, glyph_height, BLACK);
+    gfx->fillRect(0, i * glyph_height , line_cnt * glyph_width, glyph_height, BLACK);
     u8g2_for_arduino_gfx.drawUTF8(0, i * glyph_height - top_offset + glyph_height, buf);
 
 
