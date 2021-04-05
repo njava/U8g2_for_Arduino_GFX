@@ -1,6 +1,6 @@
 #######################################
 
-# Syntax Coloring Map For U8g2_for_Adafruit_GFX (uag)
+# Syntax Coloring Map For U8g2_for_Arduino_GFX (uag)
 
 ####################################### 
 
@@ -9,9 +9,7 @@
 #######################################
 
 
-
-U8G2_FOR_ADAFRUIT_GFX	KEYWORD1
-
+U8G2_FOR_ARDUINO_GFX	KEYWORD1
 
 
 #######################################
