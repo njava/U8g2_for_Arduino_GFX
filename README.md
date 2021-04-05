@@ -1,6 +1,7 @@
 
 [tocstart]: # (toc start)
 
+  * [U8g2_for_Arduino_GFX](#u8g2_for_arduino_gfx)
   * [U8g2_for_Adafruit_GFX](#u8g2_for_adafruit_gfx)
     * [What is U8g2_for_Adafruit_GFX?](#what-is-u8g2_for_adafruit_gfx)
     * [Which Adafruit GFX Libraries are Supported?](#which-adafruit-gfx-libraries-are-supported)
@@ -10,6 +11,11 @@
     * [Differences to U8g2](#differences-to-u8g2)
 
 [tocend]: # (toc end)
+
+# U8g2_for_Arduino_GFX
+  - Base U8g2_forAdafruit_GFX modify
+  - Support for ESP32 and Chinese print
+   
 
 # U8g2_for_Adafruit_GFX
 
