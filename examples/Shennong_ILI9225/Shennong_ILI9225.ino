@@ -265,7 +265,7 @@ void loop() {
   if ( line_cnt > lines_per_draw )
     line_cnt = lines_per_draw;
 
-  //display.clearDisplay();                               // clear the graphcis buffer
+  gfx->fillScreen(BLACK);                              // clear the graphcis buffer
 
   for ( i = 0; i < line_cnt; i++ )
   {
