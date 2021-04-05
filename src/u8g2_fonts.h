@@ -7,6 +7,7 @@
   from "u8g2.h" to "u8g2_fonts.h"
   
   U8g2 for Adafruit GFX Lib (https://github.com/olikraus/U8g2_for_Adafruit_GFX)
+  U8g2 for Arduino GFX Lib (https://github.com/njava/U8g2_for_Arduino_GFX)
 
   Copyright (c) 2018, olikraus@gmail.com
   All rights reserved.
