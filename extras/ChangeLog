@@ -1,3 +1,8 @@
+https://github.com/njava/U8g2_for_Arduino_GFX ChangeLog
+
+2020-04-05 V1.1.0 wqk@njava.com
+  * 垃圾佬购入老王家的ILI9225，为了ESP32能显示中文移植Adafruit_GFX到Arduino_GFX
+
 
 https://github.com/olikraus/U8g2_for_Adafruit_GFX ChangeLog
 
